@@ -12,6 +12,12 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - Public Properties
     @IBOutlet var tableView: UITableView!
+    var viewModel: MainScreenViewModel! {
+        didSet {
+//            viewModel.getList(page: 1)
+            viewModel.getRelatedWith(6)
+        }
+    }
     
     // MARK: - Private Properties
     private let reuseIdentifier = "MainScreenCell"

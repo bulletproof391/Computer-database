@@ -17,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let dataModel = DataModel()
+        let viewModel = MainScreenViewModel(dataModel)
+        let navigationController = window?.rootViewController as! UINavigationController
+        let viewController = navigationController.viewControllers[0] as! MainScreenViewController
+        
+        viewController.viewModel = viewModel
+        
         return true
     }
 
