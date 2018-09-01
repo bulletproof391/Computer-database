@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0ABD665B213A680800CFC83C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD665A213A680800CFC83C /* AppDelegate.swift */; };
-		0ABD665D213A680800CFC83C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD665C213A680800CFC83C /* ViewController.swift */; };
+		0ABD665D213A680800CFC83C /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD665C213A680800CFC83C /* MainScreenViewController.swift */; };
 		0ABD6660213A680800CFC83C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD665E213A680800CFC83C /* Main.storyboard */; };
 		0ABD6663213A680800CFC83C /* Computer_database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD6661213A680800CFC83C /* Computer_database.xcdatamodeld */; };
 		0ABD6665213A680800CFC83C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD6664213A680800CFC83C /* Assets.xcassets */; };
@@ -18,7 +18,7 @@
 /* Begin PBXFileReference section */
 		0ABD6657213A680800CFC83C /* Computer database.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Computer database.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ABD665A213A680800CFC83C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0ABD665C213A680800CFC83C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0ABD665C213A680800CFC83C /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		0ABD665F213A680800CFC83C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0ABD6662213A680800CFC83C /* Computer_database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Computer_database.xcdatamodel; sourceTree = "<group>"; };
 		0ABD6664213A680800CFC83C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,9 +56,9 @@
 		0ABD6659213A680800CFC83C /* Computer database */ = {
 			isa = PBXGroup;
 			children = (
-				0ABD665A213A680800CFC83C /* AppDelegate.swift */,
-				0ABD665C213A680800CFC83C /* ViewController.swift */,
 				0ABD665E213A680800CFC83C /* Main.storyboard */,
+				0ABD665A213A680800CFC83C /* AppDelegate.swift */,
+				0ABD665C213A680800CFC83C /* MainScreenViewController.swift */,
 				0ABD6664213A680800CFC83C /* Assets.xcassets */,
 				0ABD6666213A680800CFC83C /* LaunchScreen.storyboard */,
 				0ABD6669213A680800CFC83C /* Info.plist */,
@@ -140,7 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ABD6663213A680800CFC83C /* Computer_database.xcdatamodeld in Sources */,
-				0ABD665D213A680800CFC83C /* ViewController.swift in Sources */,
+				0ABD665D213A680800CFC83C /* MainScreenViewController.swift in Sources */,
 				0ABD665B213A680800CFC83C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
