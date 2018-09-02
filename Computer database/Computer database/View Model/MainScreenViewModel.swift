@@ -8,8 +8,22 @@
 
 import Foundation
 
+protocol TableViewRefreshing: class {
+    func updateScreen()
+    func updateToolbarButtons()
+}
+
 class MainScreenViewModel {
+    // MARK: - Public Properties
+    weak var delegate: TableViewRefreshing?
+    var currentPage = 0
+    lazy var lastPage: Int = {
+       return dataModel.lastPage
+    }()
+
+    
     // MARK: - Private Properties
+    private var goodsList: [Goods]?
     private var dataModel: DataModel
     
     // MARK: - Initializers
@@ -17,12 +31,30 @@ class MainScreenViewModel {
         self.dataModel = dataModel
     }
     
+    // MARK: - Public Methods
     func getList(page: Int) {
-        dataModel.getList(page: page)
+        goodsList?.removeAll()
+        
+        dataModel.getList(page: page) { [weak self] (goods) in
+            guard let weakSelf = self else { return }
+            weakSelf.goodsList = goods
+            weakSelf.delegate?.updateScreen()
+            
+            if page == (weakSelf.dataModel.lastPage - 1) || page == 0 {
+                weakSelf.delegate?.updateToolbarButtons()
+            }
+        }
     }
     
-    // TODO: - Delete this method
-    func getRelatedWith(_ id: Int) {
-        dataModel.getRelatedGoodsWith(id: id)
+    func numberOfRows() -> Int {
+        return goodsList != nil ? goodsList!.count : 0
+    }
+    
+    func textForRowAt(indexPath: IndexPath) -> String? {
+        return goodsList?[indexPath.row].name
+    }
+    
+    func detailTextForRowAt(indexPath: IndexPath) -> String? {
+        return goodsList?[indexPath.row].company?.name
     }
 }

@@ -54,9 +54,41 @@
                                     <constraint firstAttribute="height" constant="44" id="NWR-Xs-1ds"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Previous" width="130" id="soj-sR-R3i"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="vMS-nG-n94"/>
-                                    <barButtonItem title="Next" width="130" id="bMU-b5-QKy"/>
+                                    <barButtonItem title="Previous" width="112" id="soj-sR-R3i">
+                                        <connections>
+                                            <action selector="previousPage:" destination="BYZ-38-t0r" id="F6C-yR-0Sy"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="A4j-Ia-tL1"/>
+                                    <barButtonItem style="plain" id="5hC-3v-FHE">
+                                        <view key="customView" contentMode="scaleToFill" id="cDl-p3-Nwg">
+                                            <rect key="frame" x="142.5" y="5.5" width="90" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jc3-SR-YDn">
+                                                    <rect key="frame" x="0.0" y="6" width="90" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Ie8-mb-p7A"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Jc3-SR-YDn" secondAttribute="trailing" id="7B3-C8-BCh"/>
+                                                <constraint firstItem="Jc3-SR-YDn" firstAttribute="centerY" secondItem="cDl-p3-Nwg" secondAttribute="centerY" id="7GR-4x-IuA"/>
+                                                <constraint firstItem="Jc3-SR-YDn" firstAttribute="leading" secondItem="cDl-p3-Nwg" secondAttribute="leading" id="BHo-MR-URr"/>
+                                            </constraints>
+                                        </view>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="k6W-G9-REb"/>
+                                    <barButtonItem title="Next" width="100" id="bMU-b5-QKy">
+                                        <connections>
+                                            <action selector="nextPage:" destination="BYZ-38-t0r" id="MpJ-lq-v5A"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -74,6 +106,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="VIH-2H-UDs"/>
                     <connections>
+                        <outlet property="currentPageLabel" destination="Jc3-SR-YDn" id="7g9-UP-G88"/>
+                        <outlet property="nextPageButton" destination="bMU-b5-QKy" id="skf-eR-Aht"/>
+                        <outlet property="previousPageButton" destination="soj-sR-R3i" id="Jgi-7W-r7t"/>
                         <outlet property="tableView" destination="wTw-bn-F5e" id="p13-Q4-uS8"/>
                     </connections>
                 </viewController>

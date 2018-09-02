@@ -14,7 +14,3 @@ struct GoodsListResponse: Decodable {
     var offset: Int?
     var total: Int?
 }
-
-struct RelatedGoodsResponse: Decodable {
-    var relatedGoods: [RelatedGoods]?
-}

@@ -19,46 +19,51 @@ enum API: String {
 }
 
 class StoreAPI {
-    
     // MARK: - Public Methods
     func downloadGoodsList(page: Int, completionHandler: @escaping (Data?) -> Void) {
-//        http://testwork.nsd.naumen.ru/rest/computers?p=2
-        
-        var components = URLComponents()
-        components.scheme = API.scheme.rawValue
-        components.host = API.host.rawValue
+        var components = initializeURLComponents()
         components.path = API.computers.rawValue
         let queryPage = URLQueryItem(name: API.page.rawValue, value: String(page))
         
         components.queryItems = [queryPage]
         
         if let url = components.url {
-            URLSession.shared.dataTask(with: url) { (data, urlRsponse, err) in
-                if err == nil {
-                    completionHandler(data)
-                }
-                }.resume()
+            performURLRequestWith(url, completionHandler: completionHandler)
         }
     }
     
     func downloadGoodsWith(id: Int, completionHandler: @escaping (Data?) -> Void) {
-//        http://testwork.nsd.naumen.ru/rest/computers/14
+        var components = initializeURLComponents()
+        components.path = "\(API.computers.rawValue)/\(id)"
+        
+        if let url = components.url {
+            performURLRequestWith(url, completionHandler: completionHandler)
+        }
     }
     
     func downloadRelatedGoodsWith(_ id: Int, completionHandler: @escaping (Data?) -> Void) {
-//        http://testwork.nsd.naumen.ru/rest/computers/14/similar
-        
-        var components = URLComponents()
-        components.scheme = API.scheme.rawValue
-        components.host = API.host.rawValue
+        var components = initializeURLComponents()
         components.path = "\(API.computers.rawValue)/\(id)/\(API.related.rawValue)"
         
         if let url = components.url {
-            URLSession.shared.dataTask(with: url) { (data, urlRsponse, err) in
-                if err == nil {
-                    completionHandler(data)
-                }
-                }.resume()
+            performURLRequestWith(url, completionHandler: completionHandler)
         }
+    }
+    
+    // MARK: - Private Methods
+    func performURLRequestWith(_ url: URL, completionHandler: @escaping (Data?) -> Void) {
+        URLSession.shared.dataTask(with: url) { (data, urlRsponse, err) in
+            if err == nil {
+                completionHandler(data)
+            }
+            }.resume()
+    }
+    
+    func initializeURLComponents() -> URLComponents {
+        var components = URLComponents()
+        components.scheme = API.scheme.rawValue
+        components.host = API.host.rawValue
+        
+        return components
     }
 }
