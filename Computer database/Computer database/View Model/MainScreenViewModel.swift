@@ -57,4 +57,9 @@ class MainScreenViewModel {
     func detailTextForRowAt(indexPath: IndexPath) -> String? {
         return goodsList?[indexPath.row].company?.name
     }
+    
+    func detailViewModelAt(indexPath: IndexPath) -> DetailViewModel? {
+        guard let item = goodsList?[indexPath.row] else { return nil }
+        return DetailViewModel(item: item, dataModel: dataModel)
+    }
 }

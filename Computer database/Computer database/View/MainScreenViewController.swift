@@ -39,7 +39,14 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        if let _ = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: true)
+        }
+    }
+    
+    
+    // MARK: - Buttons handling
     @IBAction func nextPage(_ sender: Any) {
         viewModel.currentPage += 1
         viewModel.getList(page: viewModel.currentPage)
@@ -50,7 +57,8 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         viewModel.getList(page: viewModel.currentPage)
     }
     
-    // MARK: - Table View Delegate
+    
+    // MARK: - Table View Data Source
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -68,11 +76,22 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
+    
+    // MARK: - Table View Delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = GoodsViewController()
+        if let detailViewModel = viewModel.detailViewModelAt(indexPath: indexPath) {
+            viewController.viewModel = detailViewModel
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    
     // MARK: - Table View Refreshing
     func updateScreen() {
         DispatchQueue.main.async { [weak self] in
             guard let weakSelf = self else { return }
-            weakSelf.tableView.reloadData()
+            weakSelf.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
             weakSelf.previousPageButton.isEnabled = true
             weakSelf.nextPageButton.isEnabled = true
             weakSelf.currentPageLabel.text = "\(weakSelf.viewModel.currentPage + 1) of \(weakSelf.viewModel.lastPage)"

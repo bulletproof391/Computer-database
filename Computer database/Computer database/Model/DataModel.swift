@@ -42,18 +42,26 @@ class DataModel {
         }
     }
     
-    func getRelatedGoodsWith(id: Int) {
-        storeAPI.downloadRelatedGoodsWith(id) { [weak self] (receivedData) in
+    func getGoodsWith(id: Int, completionHandler: @escaping (Goods?) -> Void) {
+        storeAPI.downloadGoodsWith(id: id) { (receivedData) in
             do {
-                guard let weakSelf = self else { return }
+                guard let data = receivedData else { return }
+                // Parsing JSON
+                let goods = try JSONDecoder().decode(Goods.self, from: data)
+                completionHandler(goods)
+            } catch let jsonErr {
+                print("JSON serialization error:", jsonErr)
+            }
+        }
+    }
+    
+    func getRelatedGoodsWith(id: Int, completionHandler: @escaping ([RelatedGoods]?) -> Void) {
+        storeAPI.downloadRelatedGoodsWith(id) { (receivedData) in
+            do {
                 guard let data = receivedData else { return }
                 // Parsing JSON
                 let relatedGoodsList = try JSONDecoder().decode([RelatedGoods].self, from: data)
-                
-                for goods in relatedGoodsList {
-                    
-                }
-                
+                completionHandler(relatedGoodsList)
             } catch let jsonErr {
                 print("JSON serialization error:", jsonErr)
             }

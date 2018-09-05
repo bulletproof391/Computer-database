@@ -21,10 +21,10 @@ struct RelatedGoods:Decodable {
 struct Goods: Decodable {
     var id: Int?
     var name: String?
-    var company: Company?
     var introduced: String?
     var discounted: String?
     var imageUrl: String?
+    var company: Company?
     var description: String?
     var relatedGoods: [RelatedGoods]?
 }
