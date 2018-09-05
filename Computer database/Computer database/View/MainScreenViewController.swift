@@ -119,6 +119,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func initializeViewController() {
         navigationItem.title = "Computer database"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         previousPageButton.isEnabled = false
         initializeTableView()
     }

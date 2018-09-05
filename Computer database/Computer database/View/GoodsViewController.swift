@@ -125,7 +125,7 @@ class GoodsViewController: UIViewController, DetailViewRefreshing, UITableViewDa
         newImageView.translatesAutoresizingMaskIntoConstraints = false
         newImageView.backgroundColor = UIColor.lightGray
         newImageView.contentMode = .scaleAspectFill
-//        newImageView.clipsToBounds = true
+        newImageView.clipsToBounds = true
         
         return newImageView
     }()
@@ -150,6 +150,22 @@ class GoodsViewController: UIViewController, DetailViewRefreshing, UITableViewDa
     }()
     
     let reuseIdentifier = "cell"
+    
+    // MARK: - Private Properties
+    private lazy var imageSize: CGFloat = {
+        var size: CGFloat = 0
+        
+        switch UIDevice.current.orientation {
+        case .portrait:
+            size = UIScreen.main.bounds.width
+        case .portraitUpsideDown:
+            size = UIScreen.main.bounds.width
+        default:
+            size = UIScreen.main.bounds.height
+        }
+        
+        return size
+    }()
     
     // MARK: - Public Methods
     override func viewDidLoad() {
@@ -214,6 +230,7 @@ class GoodsViewController: UIViewController, DetailViewRefreshing, UITableViewDa
     private func initializeViewController() {
         view.backgroundColor = UIColor.white
         navigationItem.title = viewModel?.name
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         addViews()
         initializeTableView()
     }
@@ -286,8 +303,8 @@ class GoodsViewController: UIViewController, DetailViewRefreshing, UITableViewDa
         
         NSLayoutConstraint.activate([image.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
                                      image.topAnchor.constraint(equalTo: goodsDescriptionSubtitle.bottomAnchor, constant: 8),
-                                     image.widthAnchor.constraint(equalToConstant: view.frame.width - 32),
-                                     image.heightAnchor.constraint(equalToConstant: view.frame.width - 32)])
+                                     image.widthAnchor.constraint(equalToConstant: imageSize - 32),
+                                     image.heightAnchor.constraint(equalToConstant: imageSize - 32)])
         
         NSLayoutConstraint.activate([tableViewSubtitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
                                      tableViewSubtitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
